@@ -1,19 +1,127 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>task2</title>
 </head>
+
 <body>
-  
+
+  <style>
+    #people {
+
+      border-collapse: collapse;
 
 
-<script>
+    }
 
-  
-</script>
+    #people th:hover {
+      color: #be9d7c;
+      background: blueviolet;
+      cursor: pointer;
+      background-color: azure;
+    }
+
+    th,
+    td {
+      border: 1px solid #222525;
+      padding: 12px;
+      background-color: #ec7f3b;
+    }
+  </style>
+
+  <table id='people'>
+    <thead>
+      <tr>
+        <th data-type="number">Age</th>
+        <th data-type="string">Name</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>2</td>
+        <td>Vasya</td>
+      </tr>
+
+      <tr>
+        <td>65</td>
+        <td>Grigory</td>
+      </tr>
+
+      <tr>
+        <td>64</td>
+        <td>Misha</td>
+      </tr>
+
+      <tr>
+        <td>32</td>
+        <td>Katya</td>
+      </tr>
+
+      <tr>
+        <td>22</td>
+        <td>Ann</td>
+      </tr>
+    </tbody>
+
+
+
+  </table>
+
+
+
+  <script>
+    let tdList = document.body.getElementsByTagName('td')
+    let arrAge = []
+    let arrName = []
+
+    let result = {
+      "age": [],
+      "name": [],
+      saveElement(array) {
+        let isNum = typeof array[0] == "number"
+        if (isNum) {
+          this.age = array
+        }
+        else {
+          this.name = array
+        }
+      }
+    }
+
+    for (let td of tdList) {
+      if (+td.textContent >= 0 && +td.textContent <= 100) {
+        arrAge.push(+td.textContent)
+      }
+      else {
+        arrName.push(td.textContent)
+      }
+    }
+    result.saveElement(arrAge.sort())
+    result.saveElement(arrName.sort())
+
+    console.log(result.age);
+
+
+    let people = document.getElementById('people')
+    people.addEventListener('click', function (event) {
+      let type = event.target.dataset.type;
+
+
+
+
+
+
+
+      if (type === 'string') { }
+      else if (type === 'number') { }
+    })
+
+  </script>
 
 </body>
+
 </html>
