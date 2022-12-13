@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>example U</title>
+  <style>
+    #menu li {
+      margin: 10px;
+      padding: 0px;
+      list-style-type: none;
+      font-size: 10px;
+      background: aliceblue;
+      cursor: pointer;
+      width: 100px;
+    }
+
+    #menu li {
+      margin-bottom: 1px;
+      padding: 3px;
+      margin: 2px;
+    }
+
+    #menu li:hover {
+      background: green;
+    }
+
+    input {
+      height: 19px;
+      background-color: #c56e6e;
+      width: 100px;
+      border-radius: 20px;
+      display: inline;
+    }
+  </style>
+</head>
+
+<body style="background-color: antiquewhite;">
+  <p><input id="inpt" data-toggle-menu="menu" type="button" value="hide menu">
+  <ul id="menu">
+    <li data-command="save">Сохранить
+    <li data-command="redact">Редактировать
+    <li data-command="delete">Удалить
+    <li data-command="change">Изменить
+    <li data-command="other command">Другое
+  </ul>
+
+  <script>
+    inpt.addEventListener('click', function (event) {
+      let evnt = event.target
+      let closeMenu = evnt.dataset.toggleMenu
+      let lincOnMenu = document.getElementById(closeMenu)
+
+      if(!closeMenu) return
+      {
+        lincOnMenu.hidden = !lincOnMenu.hidden
+      }
+
+     // console.log(lincOnMenu);
+    }); 
+
+    menu.addEventListener('click', function (event) {
+      let evnt = event.target.closest('li')
+      if (evnt == null) { return }
+      //console.log(res.dataset.command);
+
+      let action = evnt.dataset.command
+
+
+      if (action && commands[action] !== undefined) {
+        commands[action]()
+      }
+    });
+
+    let commands = {
+      save() {
+        console.log('obj saved')
+      },
+      delete() {
+        console.log('obj deleted');
+      },
+      change() {
+        console.log('obj changing');
+      }
+    };
+
+
+    document.addEventListener('contextmenu', function(event){
+      if (event.defaultPrevented){return}
+      
+      console.log('context_menu from document');
+      event.preventDefault()
+    })
+
+    menu.oncontextmenu = function(event){
+      console.log('context_menu from menu');
+      //прерываем действие браузера по умолчанию
+      event.preventDefault()
+      
+    }
+
+
+
+
+  </script>
+</body>
+
+</html>

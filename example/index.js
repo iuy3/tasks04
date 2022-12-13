@@ -10,10 +10,13 @@ table.onclick = function(event){
     //console.log(target.parentNode.tagName);
     //console.log(this);
 
+    let td = target.closest('html')
+    console.log(td);
+
     //событие в этом контексте this
     while(target != this){
         //если событие контекста this == "TD"
-        console.log(target.parentNode);
+        //console.log(target.parentNode);
         if(target.tagName == 'TD'){
             taglighting(target)
             return
